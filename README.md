@@ -48,16 +48,29 @@ To get started developing right away:
 
 ## how to use 
 
-allows search by query or from the req.body [`DENTAL_API.js`](src/API.js) perform necessary operations on the backend:
+to test, the api allows search by req.body  or query from the [`DENTAL_API.js`](db/dental.js) and [`VET_API.js`](db/vet.js)perform necessary operations on the backend:
 
-### `query string` 
+### `Copy and paste the URL below in postman`
 
- localhost:5000/api/v1/?name=''&stateCode=''&clinicName=''&availability[from]=11:00&availability[to]=20:00&opening=[from]=11:00&availability[to]=20:00
+{
+  "name": "Mayo Clinic",
+  "stateName": "Florida",
+  "availability":  {
+    "from": "09:00",
+    "to": "20:00"
+  },
+ "clinicName": "National Veterinary Clinic",
+  "stateCode": "CA",
+   "opening": {
+    "from": "15:00",
+    "to": "22:30"
+  }
+}
 
-### `or via postman raw json`
+or ### `using query string,copy and past the URL below into postman but you will need to comment out the conflicting variable names in req.body of the clinicController` 
 
-{ "clinicName": "Good Health Home","name": "Mayo Clinic","availability": {
-    "from": "09:00",  "to": "20:00"}, "opening": {   "from": "15:00", "to": "20:00"}}
+ localhost:5000/api/v1/search/?availability[from]=09:00&availability[to]=20:00
+
 
 - [`searchAll`](#searchAll)
 - [`findAll`](#findAll)

@@ -14,8 +14,8 @@ exports.clinicController = async (req, res) => {
   const { name, stateName, availability, clinicName, stateCode, opening } =
     req.body;
 
-  const { name, stateName, availability, clinicName, stateCode, opening } =
-    req.query;
+  // const { name, stateName, availability, clinicName, stateCode, opening } =
+  //   req.query;
 
   searchAll({
     name,
