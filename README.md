@@ -25,7 +25,7 @@ To get started developing right away:
 ├── app.js - The server entry point.
 │  
 └── controllers
-    ├── clinic.controllers.js # controller for the api services.
+    ├── clinic.controllers.js # Returns a Promise which resolves to a JSON object containing a collection to the screen/console.
     └──
 │  
 └── db
@@ -40,18 +40,19 @@ To get started developing right away:
     ├── clinic.routes.js # routes to the server entry point.
     └── vet.js # api link for vet clinics with json files.
 └── utils
-    ├── clinic.finder.js # makes sure the right search in the request body returns correct answer/response.
+    ├── clinic.finder.js # promised returns a collections of response sends to the controllers request body returns correct answer/response.
     └── normalizeResponse.js # normalizes api output in a better format.
     └── responseOk.js # outputs request response.
     └── validate.js # validates and clean data coming in and going out of the db/json.
+    └── evaluateFilterForEntry.js # evaluates search params, check for types and returns the searched fields as requested.
 ```
 
-## Backend Server
+## how to use 
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+lorem iptsum kum [`API.js`](src/API.js) perform necessary operations on the backend:
 
-- [`getAll`](#getall)
-- [`update`](#update)
+- [`searchAll`](#searchAll)
+- [`findAll`](#findAll)
 - [`search`](#search)
 
 ### `getAll`
@@ -59,23 +60,27 @@ To simplify your development process, we've provided a backend server for you to
 Method Signature:
 
 ```js
-getAll();
+findAll();
 ```
 
-- Returns a Promise which resolves to a JSON object containing a collection of book objects.
-- This collection represents the books currently in the bookshelves in your app.
+- Returns a Promise which resolves to a JSON object containing a collection of clinic objects.
+- This collection the attributes of the location and of each clinic in their respective state with time availability and office hours.
 
 ### `update`
 
 Method Signature:
 
 ```js
-update(book, shelf);
+searchAll(book, shelf);
 ```
 
-- book: `<Object>` containing at minimum an `id` attribute
-- shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]
-- Returns a Promise which resolves to a JSON object containing the response data of the POST request
+- opening: `<Object>` containing at minimum an `time` attribute
+- availability: `<Object>` contains  `time` attribute
+- stateCode: `<String>` contains  `state shortcode` attribute
+- stateName: `<String>` contains  `state name` attribute
+- clinicName: `<String>` contains  `clinic name` attribute
+- name: `<String>` contains  `name` attribute
+- Returns a Promise which resolves to a JSON object containing the response data of the get request
 
 ### `search`
 
@@ -86,12 +91,12 @@ search(query);
 ```
 
 - query: `<String>`
-- Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-- These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
+- Returns a Promise which resolves to a JSON object containing a requests performed by the user
+- These search strings do not have a specific way to search but its strict about the search paramters. You'll need to make sure that the search keywords have the correct stateName, name, availability, opening time and stateCode appropriately.
 
 ## Important
 
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
+The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in api and cannot go beyond that. That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for alabama or pentagon clinic don't come back with any results.
 
 ## nodejs and express
 
