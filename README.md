@@ -99,7 +99,7 @@ Method Signature:
 search(query);
 ```
 
-- query: `<String>` localhost:5000/api/v1/?availability[from]=11:00&availability[to]=20:00
+- query: `<String>` localhost:5000/api/v1/search/?availability[from]=11:00&availability[to]=20:00
 - req.body: `<String>` { "clinicName": "Good Health Home","name": "Mayo Clinic","availability": {
     "from": "09:00",  "to": "20:00"}, "opening": {   "from": "15:00", "to": "20:00"}}
 - Returns a Promise which resolves to a JSON object containing a requests performed by the user

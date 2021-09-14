@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const routes = require('express').Router();
+const { clinicController } = require('../controllers/clinic.controllers');
+const { validate, validateReqBody } = require('../utils/validate');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+routes.get('/search', validateReqBody(), validate, clinicController);
 
-module.exports = router;
+module.exports = routes;
