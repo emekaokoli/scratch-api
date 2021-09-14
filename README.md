@@ -18,7 +18,6 @@ To get started developing right away:
 ## PROJECT FILES AND DIRECTORY
 
 ```bash
-├── CONTRIBUTING.md
 ├── README.md - This file.
 ├── package.json # npm package manager file. .
 ├── bin - Express and server config.
@@ -49,7 +48,16 @@ To get started developing right away:
 
 ## how to use 
 
-lorem iptsum kum [`API.js`](src/API.js) perform necessary operations on the backend:
+allows search by query or from the req.body [`DENTAL_API.js`](src/API.js) perform necessary operations on the backend:
+
+### `query string` 
+
+ localhost:5000/api/v1/?name=''&stateCode=''&clinicName=''&availability[from]=11:00&availability[to]=20:00&opening=[from]=11:00&availability[to]=20:00
+
+### `or via postman raw json`
+
+{ "clinicName": "Good Health Home","name": "Mayo Clinic","availability": {
+    "from": "09:00",  "to": "20:00"}, "opening": {   "from": "15:00", "to": "20:00"}}
 
 - [`searchAll`](#searchAll)
 - [`findAll`](#findAll)
@@ -66,12 +74,13 @@ findAll();
 - Returns a Promise which resolves to a JSON object containing a collection of clinic objects.
 - This collection the attributes of the location and of each clinic in their respective state with time availability and office hours.
 
-### `update`
+### `searchAll`
 
 Method Signature:
 
 ```js
-searchAll(book, shelf);
+searchAll(name,stateName,availability,clinicName, stateCode, opening, resolve, reject);
+
 ```
 
 - opening: `<Object>` containing at minimum an `time` attribute
@@ -82,7 +91,7 @@ searchAll(book, shelf);
 - name: `<String>` contains  `name` attribute
 - Returns a Promise which resolves to a JSON object containing the response data of the get request
 
-### `search`
+### `search endpoint`
 
 Method Signature:
 
@@ -90,7 +99,9 @@ Method Signature:
 search(query);
 ```
 
-- query: `<String>`
+- query: `<String>` localhost:5000/api/v1/?availability[from]=11:00&availability[to]=20:00
+- req.body: `<String>` { "clinicName": "Good Health Home","name": "Mayo Clinic","availability": {
+    "from": "09:00",  "to": "20:00"}, "opening": {   "from": "15:00", "to": "20:00"}}
 - Returns a Promise which resolves to a JSON object containing a requests performed by the user
 - These search strings do not have a specific way to search but its strict about the search paramters. You'll need to make sure that the search keywords have the correct stateName, name, availability, opening time and stateCode appropriately.
 
