@@ -1,4 +1,4 @@
-# MyReads App
+# RESTful API
 
 RESTful API that allow search in multiple clinic providers and display results from all the available clinics by any of the following:
 
@@ -43,7 +43,6 @@ To get started developing right away:
     └── normalizeResponse.js # normalizes api output in a better format.
     └── responseOk.js # outputs request response.
     └── validate.js # validates and clean data coming in and going out of the db/json.
-    └── evaluateFilterForEntry.js # evaluates search params, check for types and returns the searched fields as requested.
 ```
 
 ## how to use 
@@ -69,7 +68,7 @@ to test, the api allows search by req.body  or query from the [`DENTAL_API.js`](
 
 or ### `using query string,copy and past the URL below into postman but you will need to comment out the conflicting variable names in req.body of the clinicController` 
 
- localhost:5000/api/v1/search/?availability[from]=09:00&availability[to]=20:00
+ http://localhost:5000/api/v1/search/?availability[from]=09:00&availability[to]=20:00
 
 
 - [`searchAll`](#searchAll)

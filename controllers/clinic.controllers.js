@@ -11,11 +11,11 @@ const { searchAll } = require('../utils/clinic.finder');
  * @returns {json} json
  */
 exports.clinicController = async (req, res) => {
-  const { name, stateName, availability, clinicName, stateCode, opening } =
-    req.body;
-
   // const { name, stateName, availability, clinicName, stateCode, opening } =
-  //   req.query;
+  //   req.body;
+console.log(req.query);
+  const { name, stateName, availability, clinicName, stateCode, opening } =
+    req.query;
 
   searchAll({
     name,
